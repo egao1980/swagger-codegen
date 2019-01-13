@@ -7,7 +7,7 @@
 
 (defun delete-order (order-id)
   "Delete purchase order by ID
-   For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors"
+   For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors"
   (call-api "/store/order/{orderId}"
             :delete
             :path-params   `(("orderId" . ,order-id))
@@ -33,7 +33,7 @@
 
 (defun get-order-by-id (order-id)
   "Find purchase order by ID
-   For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions"
+   For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions"
   (call-api "/store/order/{orderId}"
             :get
             :path-params   `(("orderId" . ,order-id))

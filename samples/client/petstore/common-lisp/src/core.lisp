@@ -15,7 +15,7 @@
 
 (defun call-api (url
                  &optional (method :get)
-                 &key (base-url "https://petstore.swagger.io/v2") body-param path-params header-params query-params form-params auth-names
+                 &key (base-url "http://petstore.swagger.io/v2") body-param path-params header-params query-params form-params auth-names
                    (content-types '("application/json")) (accepts '("application/json")))
   "Call remote API endpoint"
   (multiple-value-bind (stream code)

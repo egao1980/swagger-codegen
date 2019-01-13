@@ -12,7 +12,7 @@
 (defsystem "swagger-petstore"
   :version "1.0.0"
   :author ""
-  :license "Apache 2.0"
+  :license "Apache-2.0"
   :depends-on ("drakma"
                "cl-json"
                "cl-ppcre")
