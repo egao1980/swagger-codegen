@@ -1,0 +1,24 @@
+(in-package :cl-user)
+(defpackage {{systemName}}.api/{{classname}}
+  (:use :cl
+        :{{systemName}}.core))
+(in-package :{{systemName}}.api/{{classname}})
+
+{{#operations}}
+  {{#operation}}
+
+(defun {{operationId}} ({{#allParams}}{{#required}}{{paramName}}{{#hasMore}} {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}} &key{{#allParams}}{{^required}} {{paramName}}{{/required}}{{/allParams}}{{/hasOptionalParams}})
+  "{{&summary}}{{#notes}}
+   {{&notes}}{{/notes}}"
+  (call-api "{{path}}"
+            :{{httpMethod}}
+            :path-params   `({{#pathParams}}("{{baseName}}" . ,{{paramName}}){{#hasMore}} {{/hasMore}}{{/pathParams}})
+            :header-params `({{#headerParams}}("{{baseName}}" . ,{{paramName}}){{#hasMore}} {{/hasMore}}{{/headerParams}})
+            :query-params  `({{#queryParams}}("{{baseName}}" . ,{{paramName}}){{#hasMore}} {{/hasMore}}{{/queryParams}})
+            :form-params   `({{#formParams}}("{{baseName}}" . ,{{paramName}}){{#hasMore}} {{/hasMore}}{{/formParams}}){{#bodyParam}}
+            :body-param    {{paramName}}{{/bodyParam}}
+            :content-types '({{#consumes}}"{{& mediaType}}"{{#hasMore}} {{/hasMore}}{{/consumes}})
+            :accepts       '({{#produces}}"{{& mediaType}}"{{#hasMore}} {{/hasMore}}{{/produces}})
+            :auth-names    '({{#authMethods}}"{{&name}}"{{#hasMore}} {{/hasMore}}{{/authMethods}})))
+  {{/operation}}
+{{/operations}}

@@ -1,0 +1,12 @@
+(in-package :cl-user)
+(defpackage {{systemName}}
+  (:use
+   :cl
+   :{{systemName}}.core)
+
+{{#apiInfo}}{{#apis}}  (:import-from :{{systemName}}.api/{{classname}}{{#operations}}{{#operation}}
+                :{{operationId}}{{/operation}}{{/operations}})
+{{/apis}}{{/apiInfo}}
+  (:export {{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}
+   :{{operationId}}{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}))
+(in-package :{{systemName}})

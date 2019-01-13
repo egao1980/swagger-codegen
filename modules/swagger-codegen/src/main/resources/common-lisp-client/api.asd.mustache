@@ -1,0 +1,32 @@
+#|
+  This file is a part of {{projectName}} project.
+  Copyright (c) 2019 {{projectAuthor}}
+|#
+
+#|
+  {{projectDescription}}
+
+  Author: {{projectAuthor}}
+|#
+
+(defsystem "{{systemName}}"
+  :version "{{projectVersion}}"
+  :author "{{projectAuthor}}"
+  :license "{{projectLicenseName}}"
+  :depends-on ("drakma"
+               "cl-json"
+               "cl-ppcre")
+  :components ((:module "src"
+                :components
+                ((:file "core")
+                 (:file "{{systemName}}" :depends-on ("core" "api"))
+                 (:module "api"
+                  :depends-on ("core")
+                  :components (
+                   {{#apiInfo}}{{#apis}}(:file "{{classname}}")
+                   {{/apis}}{{/apiInfo}})))))
+  :description "{{projectDescription}}"
+  :long-description
+  #.(read-file-string
+     (subpathname *load-pathname* "README.md"))
+  :in-order-to ((test-op (test-op "{{systemName}}-test"))))

@@ -1,0 +1,20 @@
+#|
+  This file is a part of {{projectName}} project.
+  Copyright (c) 2019 {{projectAuthor}}
+|#
+
+(defsystem "{{systemName}}-test"
+  :defsystem-depends-on ("prove-asdf")
+  :author "{{projectAuthor}}"
+  :license "{{projectLicense}}"
+  :depends-on ("{{projectName}}"
+               "prove")
+  :components ((:module "tests"
+                :components
+                ((:module "api"
+                  :components (
+                  {{#apiInfo}}{{#apis}}(:file "{{classname}}")
+                  {{/apis}}{{/apiInfo}})))))
+  :description "Test system for {{systemName}}"
+
+  :perform (test-op (op c) (symbol-call :prove-asdf :run-test-system c)))

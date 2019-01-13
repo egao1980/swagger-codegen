@@ -1,0 +1,16 @@
+(in-package :cl-user)
+(defpackage {{systemName}}.test/{{classname}}
+  (:use :cl
+        :{{systemName}}.core
+        :{{systemName}}.api/{{classname}}
+        :prove))
+
+(in-package :{{systemName}}.test/{{classname}})
+
+;; NOTE: To run this test file, execute `(asdf:test-system :{{systemName}})' in your Lisp.
+
+(plan nil)
+
+
+
+(finalize)
